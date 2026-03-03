@@ -39,7 +39,8 @@ const StrategyAnalyzer = () => {
 
   const validateStrategy = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/validate-strategy', {
+      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+      const response = await fetch(`${apiUrl}/api/validate-strategy`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ strategy })
@@ -74,7 +75,8 @@ const StrategyAnalyzer = () => {
       formData.append('csv', csv);
       formData.append('strategy', strategy);
 
-      const response = await fetch('http://localhost:5000/api/analyze', {
+      const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+      const response = await fetch(`${apiUrl}/api/analyze`, {
         method: 'POST',
         body: formData
       });
